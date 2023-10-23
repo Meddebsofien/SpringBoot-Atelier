@@ -6,6 +6,7 @@ import tn.esprit.tic.springproj.Models.Foyer;
 import tn.esprit.tic.springproj.Repository.FoyerRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -37,6 +38,8 @@ public class FoyerService implements  IFoyerService{
 
     @Override
     public void archiverFoyer(long idFoyer) {
+     foyerrepository.getReferenceById(idFoyer).setArchived(true);
+
 
     }
 }

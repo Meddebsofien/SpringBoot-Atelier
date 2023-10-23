@@ -38,4 +38,9 @@ public class EtudiantService implements IEtudiantService {
     public void removeEtudiant(Long idEtudiant) {
         etudiantRepository.deleteById(idEtudiant);
     }
+
+    @Override
+    public List<Etudiant> addEtudiants(List<Etudiant> etudiants) {
+       return  etudiantRepository.saveAll(etudiants);
+    }
 }
