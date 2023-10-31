@@ -3,10 +3,13 @@ package tn.esprit.tic.springproj.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.tic.springproj.Models.Etudiant;
+import tn.esprit.tic.springproj.Models.Reservation;
 import tn.esprit.tic.springproj.Repository.EtudiantRepository;
+import tn.esprit.tic.springproj.Repository.ReservationRepository;
 import tn.esprit.tic.springproj.services.IEtudiantService;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,6 +17,7 @@ import java.util.List;
 public class EtudiantService implements IEtudiantService {
 
     EtudiantRepository etudiantRepository;
+    ReservationRepository reservationRepo;
     @Override
     public List<Etudiant> retrieveAllEtudiants() {
         return etudiantRepository.findAll();
@@ -42,5 +46,27 @@ public class EtudiantService implements IEtudiantService {
     @Override
     public List<Etudiant> addEtudiants(List<Etudiant> etudiants) {
        return  etudiantRepository.saveAll(etudiants);
+    }
+
+    @Override
+    public Etudiant affecterEtudiantAReservation(String nomEt, String prenomEt, String idReservation) {
+
+
+        Etudiant etudiant = etudiantRepository.getEtudiantbynomprenom(nomEt,prenomEt);
+        Reservation res = reservationRepo.getResbyidRes(idReservation);
+
+        List<Etudiant> list = new ArrayList<>();
+
+        if(res.getEtudiantRes()!=null){
+            list = res.getEtudiantRes();
+        }
+
+        list.add(etudiant);
+
+        res.setEtudiantRes(list);
+
+        etudiantRepository.save(etudiant);
+        reservationRepo.save(res);
+        return etudiant;
     }
 }
