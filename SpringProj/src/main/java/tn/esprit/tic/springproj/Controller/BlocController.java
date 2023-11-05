@@ -1,5 +1,7 @@
 package tn.esprit.tic.springproj.Controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tic.springproj.Models.Bloc;
 import tn.esprit.tic.springproj.services.IBlocService;
@@ -15,6 +17,8 @@ public class BlocController {
 
 
     @GetMapping ("/getAllBloc")
+    @Operation(description = "afficher tous les blocs")
+
     public List<Bloc> getAllBlocs(){
       return   blocs.retrieveBlocs();
     }

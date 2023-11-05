@@ -81,7 +81,7 @@ public Bloc affecterChambresABloc(List<Long> numChambre, String nomBloc) {
         chambre1.setBlocch(bloc);
         chr.save(chambre1);
     });
-  //  blocrepository.save(bloc);
+    blocrepository.save(bloc);
     return bloc;
 
 }
