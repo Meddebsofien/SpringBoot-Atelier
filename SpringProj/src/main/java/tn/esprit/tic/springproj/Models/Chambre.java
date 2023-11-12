@@ -1,5 +1,6 @@
 package tn.esprit.tic.springproj.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,8 +13,8 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-
+@ToString(exclude = "blocch")
+@EqualsAndHashCode
 public class Chambre implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,7 @@ public class Chambre implements Serializable {
     private  TypeChambre type;
 
     @ManyToOne
+    @JsonBackReference
     private Bloc blocch;
 
     @OneToMany

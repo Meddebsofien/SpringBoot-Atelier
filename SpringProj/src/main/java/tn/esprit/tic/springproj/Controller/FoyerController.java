@@ -1,17 +1,21 @@
 package tn.esprit.tic.springproj.Controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tic.springproj.Models.Foyer;
+import tn.esprit.tic.springproj.Repository.FoyerRepository;
 import tn.esprit.tic.springproj.services.FoyerService;
 import tn.esprit.tic.springproj.services.IFoyerService;
 
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("foyer")
 public class FoyerController {
 
     IFoyerService foyerservice;
+    FoyerRepository fr;
 
 @GetMapping("getAllFoyer")
    public  List<Foyer> getAllFoyer(){
@@ -39,8 +43,10 @@ public class FoyerController {
     }
 
     @PutMapping("archiver/{idFoyer}")
-    public  void archiverFoyer ( @PathVariable("idFoyer")  long idFoyer){
-    foyerservice.archiverFoyer(idFoyer);
+    public  Foyer archiverFoyer ( @PathVariable("idFoyer")  long idFoyer){
+    //Foyer fo = fr.findById(idFoyer).get();
+     Foyer fo = foyerservice.archiverFoyer(idFoyer);
+    return  fo;
 
     }
 

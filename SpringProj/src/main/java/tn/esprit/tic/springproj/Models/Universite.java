@@ -1,5 +1,6 @@
 package tn.esprit.tic.springproj.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class Universite implements Serializable {
 private String adresse;
 
 @OneToOne
+@JsonIgnore
     private Foyer foyer ;
 
 

@@ -2,6 +2,7 @@ package tn.esprit.tic.springproj.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tic.springproj.Models.Bloc;
 import tn.esprit.tic.springproj.services.IBlocService;
@@ -9,6 +10,7 @@ import tn.esprit.tic.springproj.services.IBlocService;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/bloc")
 
 public class BlocController {
@@ -16,9 +18,8 @@ public class BlocController {
     IBlocService  blocs;
 
 
-    @GetMapping ("/getAllBloc")
-    @Operation(description = "afficher tous les blocs")
-
+    @GetMapping ("/get")
+//    @Operation(description = "afficher tous les blocs")
     public List<Bloc> getAllBlocs(){
       return   blocs.retrieveBlocs();
     }
@@ -30,7 +31,7 @@ public class BlocController {
 
     }
 
-    @GetMapping("getblocbyId/{idbloc}")
+    @GetMapping("/getblocbyId/{idbloc}")
    public Bloc getBlocById ( @PathVariable("idbloc")  long idbloc){
         return  blocs.retrieveBloc(idbloc);
 

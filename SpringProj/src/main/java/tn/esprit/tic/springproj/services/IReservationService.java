@@ -2,6 +2,7 @@ package tn.esprit.tic.springproj.services;
 
 import tn.esprit.tic.springproj.Models.Reservation;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IReservationService {
@@ -13,6 +14,7 @@ public interface IReservationService {
 
 
     public Reservation ajouterReservationEtAssignerAChambreEtAEtudiant (Reservation res, Long numChambre, long cin) ;
+    public List<Reservation> getReservationParAnneeUniversitaire(Date dateDebut , Date dateFin );
 
 }
 

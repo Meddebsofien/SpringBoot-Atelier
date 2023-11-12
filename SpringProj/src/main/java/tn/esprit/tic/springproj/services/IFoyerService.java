@@ -9,7 +9,7 @@ public interface IFoyerService {
     Foyer addFoyer (Foyer f);
     Foyer updateFoyer (Foyer f);
     Foyer retrieveFoyer (long idFoyer);
-    void archiverFoyer (long idFoyer);
+    Foyer archiverFoyer (long idFoyer);
 
     Foyer addFoyerWithBloc(Foyer f);
 }

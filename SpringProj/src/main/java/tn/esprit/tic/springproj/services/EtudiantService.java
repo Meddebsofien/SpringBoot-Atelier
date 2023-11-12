@@ -55,18 +55,18 @@ public class EtudiantService implements IEtudiantService {
         Etudiant etudiant = etudiantRepository.getEtudiantbynomprenom(nomEt,prenomEt);
         Reservation res = reservationRepo.getResbyidRes(idReservation);
 
-        List<Etudiant> list = new ArrayList<>();
+        List<Reservation> list = new ArrayList<>();
 
-        if(res.getEtudiantRes()!=null){
-            list = res.getEtudiantRes();
+        if(etudiant.getReservationEtudiant()!=null){
+            list = etudiant.getReservationEtudiant();
         }
 
-        list.add(etudiant);
+        list.add(res);
+        etudiant.setReservationEtudiant(list);
 
-        res.setEtudiantRes(list);
 
-        etudiantRepository.save(etudiant);
-        reservationRepo.save(res);
+       etudiantRepository.save(etudiant);
+
         return etudiant;
     }
 }

@@ -1,6 +1,9 @@
 package tn.esprit.tic.springproj.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +16,8 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@EqualsAndHashCode
+@ToString(exclude = "foyerr")
 
 public class Bloc implements Serializable {
     @Id
@@ -23,13 +27,12 @@ public class Bloc implements Serializable {
     private long capaciteBloc;
     private boolean Archived=false;
     @ManyToOne
+    @JsonManagedReference
     private Foyer  foyerr;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "blocch")
-
+    @JsonBackReference
     private List<Chambre> chambres;
-
-
 
 
 

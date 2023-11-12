@@ -1,5 +1,6 @@
 package tn.esprit.tic.springproj.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,6 +28,7 @@ public class Etudiant implements Serializable {
     private Date dateNaissance;
 
     @ManyToMany (cascade = CascadeType.ALL )
+    @JsonIgnore
     private List<Reservation> ReservationEtudiant;
 
 

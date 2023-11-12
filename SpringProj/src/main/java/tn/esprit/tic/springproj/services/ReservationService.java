@@ -10,6 +10,7 @@ import tn.esprit.tic.springproj.Repository.EtudiantRepository;
 import tn.esprit.tic.springproj.Repository.ReservationRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -64,6 +65,20 @@ public class ReservationService implements  IReservationService {
         listResch.add(reseravation);
         chambre.setReservationsChambre(listResch);
         chambreRep.save(chambre);
-return reseravation;
+        return reseravation;
+    }
+
+    @Override
+    public List<Reservation> getReservationParAnneeUniversitaire(Date dateDebut, Date dateFin) {
+        List<Reservation> listAllRes = new ArrayList<>();
+        List<Reservation> listRes = new ArrayList<>();
+        listAllRes = reservrep.findAll();
+        for(int i=0 ; i<listAllRes.size() ; i++){
+            if(listAllRes.get(i).getAnneUniv().after(dateDebut) &&  listAllRes.get(i).getAnneUniv().before(dateFin));
+            {
+                listRes.add(listAllRes.get(i));
+            }
+        }
+        return listRes;
     }
 }
